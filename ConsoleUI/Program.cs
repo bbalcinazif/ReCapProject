@@ -16,36 +16,40 @@ namespace ConsoleUI
             //BrandTest();
             //ColorTest();
 
-            Rentals();
 
+            Rentals();
         }
 
         private static void Rentals()
         {
             RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
             var result = rentalsManager.GetAll();
-            if (result.Success == true)
+            if (result.Success)
             {
+                Console.WriteLine($"Toplam : {result.Data.Count} kayıt okundu");
                 foreach (var rentals in result.Data)
                 {
-                    Console.WriteLine("Kiralama ID:" + rentals.RentalId + "Kullanıcı ID:" + rentals.CustomerId + "Araba ID:" + rentals.CarId);
+                    Console.WriteLine(
+                        $"Kiralama ID: {rentals.RentalId} Kullanıcı ID: {rentals.CustomerId} Araba ID:{rentals.CarId}");
                 }
             }
             else
             {
                 Console.WriteLine(Messages.Error);
             }
+
+            Console.WriteLine("Finished");
         }
 
         private static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             var result = colorManager.GetAll();
-            if(result.Success==true)
+            if (result.Success)
             {
                 foreach (var colors in result.Data)
                 {
-                    Console.WriteLine(" Renk Adı: "+ colors.ColorName + " Renk Id'si: " +colors.ColorId);
+                    Console.WriteLine($" Renk Adı: {colors.ColorName} Renk Id'si: {colors.ColorId}");
                 }
             }
             else
@@ -58,11 +62,11 @@ namespace ConsoleUI
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             var result = brandManager.GetAll();
-            if(result.Success==true)
+            if (result.Success)
             {
                 foreach (var brands in result.Data)
                 {
-                    Console.WriteLine(" Marka Adı: " + brands.BrandName + " Marka Id'si " + brands.BrandId);
+                    Console.WriteLine($" Marka Adı: {brands.BrandName} Marka Id'si {brands.BrandId}");
                 }
             }
             else
@@ -76,21 +80,17 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
 
             var result = carManager.GetAll();
-            if(result.Success==true)
+            if (result.Success)
             {
-                foreach (var cars in result.Data )
+                foreach (var cars in result.Data)
                 {
-                    Console.WriteLine("Araba Adı :" + cars.CarName + " || " +
-
-                                      "Günlük Fiyatı :" + cars.DailyPrice );
-                                      
+                    Console.WriteLine($"Araba Adı :{cars.CarName} || Günlük Fiyatı :{cars.DailyPrice}");
                 }
             }
             else
             {
                 Console.WriteLine(result.Message);
             }
-            
         }
     }
 }

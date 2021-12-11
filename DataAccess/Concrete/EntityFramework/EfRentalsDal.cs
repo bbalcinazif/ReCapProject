@@ -10,9 +10,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfRentalsDal:EfEntityRepositoryBase<Rentals, CarProjectContext>,IRentalsDal
+    public class EfRentalsDal:EfEntityRepositoryBase<Rental, CarProjectContext>,IRentalsDal
     {
 
+        public EfRentalsDal()
+        {
+            
+        }
 
     }
 }

@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-   
+    [Keyless]
     public class Customer:IEntity
     {
-        
         public int UserId { get; set; }
         public string CompanyName { get; set; }
+        public string Address { get; set; }
     }
 }
