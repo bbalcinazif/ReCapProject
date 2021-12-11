@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -11,26 +12,62 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
             //BrandTest();
             //ColorTest();
+
+            Rentals();
+
+        }
+
+        private static void Rentals()
+        {
+            RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
+            var result = rentalsManager.GetAll();
+            if (result.Success == true)
+            {
+                foreach (var rentals in result.Data)
+                {
+                    Console.WriteLine("Kiralama ID:" + rentals.RentalId + "Kullanıcı ID:" + rentals.CustomerId + "Araba ID:" + rentals.CarId);
+                }
+            }
+            else
+            {
+                Console.WriteLine(Messages.Error);
+            }
         }
 
         private static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var colors in colorManager.GetAll())
+            var result = colorManager.GetAll();
+            if(result.Success==true)
             {
-                Console.WriteLine(colors.ColorName);
+                foreach (var colors in result.Data)
+                {
+                    Console.WriteLine(" Renk Adı: "+ colors.ColorName + " Renk Id'si: " +colors.ColorId);
+                }
+            }
+            else
+            {
+                Console.WriteLine(Messages.Error);
             }
         }
 
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brands in brandManager.GetAll())
+            var result = brandManager.GetAll();
+            if(result.Success==true)
             {
-                Console.WriteLine(brands.BrandName);
+                foreach (var brands in result.Data)
+                {
+                    Console.WriteLine(" Marka Adı: " + brands.BrandName + " Marka Id'si " + brands.BrandId);
+                }
+            }
+            else
+            {
+                Console.WriteLine(Messages.Error);
             }
         }
 

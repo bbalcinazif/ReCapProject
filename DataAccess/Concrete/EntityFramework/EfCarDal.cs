@@ -14,14 +14,14 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, CarProjectContext>, ICarDal
     {
-        public List<ProductDetailDto> GetProductDetails()
+        public List<CarDetailDto> GetProductDetails()
         {
             using (CarProjectContext context = new CarProjectContext())
             {
                 var result = from c in context.Cars
                              join a in context.Colors
                              on c.ColorId equals a.ColorId
-                             select new ProductDetailDto { CarName = c.CarName, 
+                             select new CarDetailDto { CarName = c.CarName, 
                                  ColorName = a.ColorName, DailyPrice = c.DailyPrice, BrandName = c.Description };
 
                 return result.ToList();
