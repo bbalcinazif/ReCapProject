@@ -22,13 +22,13 @@ namespace ConsoleUI
 
         private static void Rentals()
         {
-            RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
+            RentalManager rentalsManager = new RentalManager(new EfRentalDal());
             var result = rentalsManager.GetAll();
             if (result.Success == true)
             {
                 foreach (var rentals in result.Data)
                 {
-                    Console.WriteLine("Kiralama ID:" + rentals.RentalId + "Kullanıcı ID:" + rentals.CustomerId + "Araba ID:" + rentals.CarId);
+                    Console.WriteLine("Kiralama ID:"+ " " +rentals.RentalId + " " + " Müsteri ID:"+ " "+rentals.CustomerId + " " +" Araba ID:"+ " "+ rentals.CarId + " " + Messages.RentalListed );
                 }
             }
             else

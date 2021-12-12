@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-   
+    [Keyless]
     public class Customer:IEntity
     {
         
